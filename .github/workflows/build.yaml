@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get git hash
         run: |
@@ -34,7 +34,7 @@ jobs:
           mkdir -p out
           (cd out && ../scripts/docker/build-with-docker.sh)
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: runtime-${{ matrix.appimage_arch }}
           path: out/*
@@ -48,9 +48,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: mkdir -p out
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           path: out
       - run: ./deploy.sh out/**/*
